@@ -4,7 +4,13 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+    private TicketSales ticketSalesSystem;
+
+    public MainMenu(TicketSales ticketSalesSystem) {
+        this.scanner = new Scanner(System.in);
+        this.ticketSalesSystem = ticketSalesSystem;
+    }
 
     public void startMenu() {
         boolean exit = false;
@@ -19,10 +25,10 @@ public class MainMenu {
                 int option = Integer.parseInt(scanner.nextLine());
                 switch (option) {
                     case 1:
-                        SeeAvailableEvents();
+                        ticketSalesSystem.SeeAvailableEvents();
                         break;
                     case 2:
-                        buyTickets();
+                        ticketSalesSystem.buyTickets();
                         break;
                     case 3:
                         exit = true;
@@ -34,20 +40,8 @@ public class MainMenu {
                 System.out.println("Entrada inválida. Por favor, ingrese un número.");
             }
         }
-        saveStatus();
+        ticketSalesSystem.saveStatus();
         System.out.println("Gracias por usar el sistema. ¡Hasta pronto!");
         scanner.close();
-    }
-
-    private void SeeAvailableEvents() {
-        System.out.println("Aquí se mostraría la lista de eventos.");
-    }
-
-    private void buyTickets() {
-        System.out.println("Aquí iniciaría el proceso de compra de boletos.");
-    }
-
-    private void saveStatus() {
-        System.out.println("Guardando datos antes de salir...");
     }
 }
